@@ -1,0 +1,125 @@
+
+<router-outlet></router-outlet>
+
+<!-- Top navigation buttons -->
+<div class="d-flex justify-content-end mt-3">
+    <button type="button" class="btn btn-outline-light mr-1 btn-md px-4" routerLink="/search" [class.active]="isActive('/search')"> Search </button>
+    <button type="button" class="btn btn-outline-light btn-md favorites-button" routerLink="/favorites" [class.active]="isActive('/favorites')" style="margin-right: 10px;"> Favorites </button>
+</div>
+
+<!-- Event Search Container -->
+
+<div class="event-search-container">
+    <h2 class="event-search-header">Event Search</h2>
+    <hr class="event-search-line">
+
+    <!-- Event Search Form -->
+    <form class="event-search-form">
+
+        <!-- Keyword Group    -->
+        <div>
+            <label for="keyword">Keyword <span class="required-symbol">*</span></label><br/>
+            <input type="text" id="keywordInput" [(ngModel)]="keyword" name="keyword" class="form-control" 
+                    (input)="onSearchInput()" (focus)="doneWithKeywordBox=false" (blur)='onBlur()' #keywordInput required>
+            <div class ="keyword-error" id="keyword-error" [style.display]="keywordErrorShown ? 'block' : 'none'"> 
+                <div class ="arrow-design" style="position:absolute;"></div>
+                <div class ="message"> <p class="ex">!</p> &nbsp; Please fill out this field.</div>
+            </div>
+            <div class="attractions-dropdown" *ngIf="attractions.length > 0 && !doneWithKeywordBox && !showLoadingSpinner" id="autocomplete-dropdown">
+                <div class="attraction-item" *ngFor="let attraction of attractions" (click)="keyword = attraction; attractions = []">{{attraction}}</div>
+            </div>
+            <div class="spinner-dropdown" *ngIf="showLoadingSpinner && !doneWithKeywordBox">
+                <div class="spinner-border spinner-border-md" id = "spinner-item" *ngIf="showLoadingSpinner"></div>      
+            </div>             
+        </div>
+        
+        <!-- Distance and Category Groups -->
+        <div class="row">
+            <div class="form-group col-md-6">
+            <!-- Distance Group -->
+            <div> 
+                <label for="distance">Distance (miles)</label><br />
+                <input type="number" class="form-control" id="distance" name="distance" [(ngModel)]="distance" placeholder="10"/>
+            </div>
+            </div>
+        
+            <div class="form-group col-md-5">
+            <!-- Category Group -->
+                <div>
+                    <label for="category">Category <span class="required-symbol">*</span></label> <br/>
+                    <select class="form-control" id="category" name="category" [(ngModel)]="category"required>
+                    <option value="default">Default</option>
+                    <option value="music">Music</option>
+                    <option value="sports">Sports</option>
+                    <option value="arts-theatre">Arts & Theatre</option>
+                    <option value="film">Film</option>
+                    <option value="miscellaneous">Miscellaneous</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <!--  -->
+<!--  -->
+<!--  -->
+        <!-- Location Group -->
+        <div>
+            <label for="location">Location <span class="required-symbol">*</span></label><br />
+            <input type="text" class="form-control" id="locationInput" name="location" (input)= "locationErrorShown=false"
+                [(ngModel)]="location" [disabled]="autoDetectLocation" required>
+            <div class ="location-error" id="location-error" [style.display]="locationErrorShown ? 'block' : 'none'"> 
+                <div class ="arrow-design"></div>
+                <div class ="message"> <p class="ex">!</p> &nbsp; Please fill out this field.</div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="form-group col-md-6">
+            <!-- Auto-Detect Location Checkbox -->
+            <div class="auto-detect-location-checkbox">
+                <input class="checkbox-input" type="checkbox" id="auto-detect-location" name="autoDetectLocation" (input)= "locationErrorShown=false" [(ngModel)]="autoDetectLocation" (change)="onChangeAutoDetectLocation()"/>
+                <label class="checkbox-label" for="auto-detect-location">&nbsp;Auto-detect your location</label>
+            </div>
+        </div>
+      
+
+        <div class="submit-clear-buttons">
+            <button type="button" class="btn btn-danger btn-md" (click)="validSearch()">SUBMIT</button>
+            <button type="button" class="btn btn-primary btn-md" (click)="activateClearButton()">CLEAR</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- Event Result Component -->
+<app-event-result [events]="events"
+                (dataEmitter) = "receiveEmitter($event)"
+                *ngIf="showTable && !onDetailTable">                 
+</app-event-result>
+
+<!-- Details Component -->
+<app-details [eventDetails]="eventDetails" 
+            [venueDetails] = "venueDetails" 
+            [artistDetails] = "artistDetails" 
+            [isValidVenue]= "isValidVenue" 
+            [isValidArtist]="isValidArtist"
+
+            (onDetailTableEmitter) = "receiveEmitterFromDetails($event)" 
+            *ngIf="showDetailTable && onDetailTable"
+            > 
+</app-details>
+
+
+

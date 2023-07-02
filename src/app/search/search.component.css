@@ -1,0 +1,191 @@
+
+label {
+    color: #add8e6;
+}
+
+/* tooltip */
+
+.keyword-error {
+  font-size: 12px;
+  animation: fadein 0.5s ease-in-out;
+}
+
+.location-error {
+  font-size: 12px;
+  animation: fadein 0.5s ease-in-out;
+}
+
+.message {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 25%);
+  z-index: 9999;
+  max-width: 200px;
+  padding: 4px 8px;
+  text-align: center;
+  background-color: rgb(241, 239, 239);
+  color: black;
+  border-radius: 4px;
+  opacity: 1;
+  pointer-events: none;
+}
+.message {
+    display: flex; align-items: center;
+}
+@keyframes fadein {
+  from {opacity: 0.6;} 
+  to {opacity: 1;}
+}
+
+.ex {
+  font-size: 10px;
+  background-color: orange;
+  color: white;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.arrow-design {
+  margin: auto;
+  position: absolute;
+  z-index: 9999;
+  top: 70%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-500%);
+  border-style: solid;
+  border-width: 8px;
+  border-color: transparent transparent rgb(241, 239, 239) transparent;
+}
+
+
+
+
+/* ---tooltip */
+.btn.active {
+    border: 2px solid #fff;
+    color: #fff;
+    background-color: transparent;
+}
+  
+.btn-outline-light {
+    color: #fff;
+    border: 2px solid transparent;
+    background-color: transparent;
+}
+
+.event-search-header{
+    padding-top: 25px;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', serif;
+}
+.event-search-line{
+    height: 0px;
+}
+
+/* Whole container for event search */
+.event-search-container {
+    max-width: 500px;
+    margin: 0px auto;
+    margin-bottom: 40px;
+    margin-top: 25px;
+    border-radius: 20px;
+    background-color: rgb(120, 120, 120, 0.6);
+    backdrop-filter: blur(4.5px);
+    padding: 10px 20px 20px 20px;
+    color: white;
+    font-size: 13.5px;
+    font-family: 'Verdana';
+}
+
+
+.event-search-form > div {
+    padding-bottom: 20px;
+    position: relative;
+  }
+
+input.form-control, select.form-control {
+  margin-top: 5px; /* Adjust this value according to your preference */
+}
+
+/* Add this media query to your CSS */
+@media (max-width: 767px) {
+    .form-group.col-md-6 {
+      padding-bottom: 15px;
+    }
+    .form-group.col-md-5 {
+      width: auto;
+      flex: 0.8;
+    }
+}
+
+.required-symbol {
+    color: red;
+}
+  
+.submit-clear-buttons {
+    display: flex;
+    justify-content: center;
+
+}
+.submit-clear-buttons .btn {
+    margin: 0 0.4rem;
+}
+  
+/* Add gray effect to the location input field when checkbox checked */
+#location:disabled {
+    background-color: #f0f0f0;
+    color: #a0a0a0;
+    border: 1px solid #d0d0d0;
+}
+
+.form-control:disabled {
+  background-color: #c9c7c7;
+}
+
+/* Autocomplete dropdown Decoration */
+.attractions-dropdown {
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+    color: black;
+    border-radius: 0 0 0.35rem 0.35rem;
+  }
+  
+.attraction-item {
+    padding: 5px;
+    cursor: pointer;
+    color: #000;
+    font-size: 15px;
+    padding-left: 10px;
+}
+.attraction-item:hover {
+    background-color: #f0f0f0;
+}
+  
+
+.spinner-dropdown {
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
+  color: black;
+  border-radius: 0 0 0.35rem 0.35rem;
+}
+
+#spinner-item {
+  margin-left: 15px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  color: rgb(128, 128, 128);
+}

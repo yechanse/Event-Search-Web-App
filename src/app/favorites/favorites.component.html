@@ -1,0 +1,39 @@
+<!-- Top navigation buttons -->
+<div class="d-flex justify-content-end mt-3">
+  <button type="button" class="btn btn-outline-light mr-1 btn-md px-4" routerLink="/search" [class.active]="isActive('/search')"> Search </button>
+  <button type="button" class="btn btn-outline-light btn-md favorites-button" routerLink="/favorites" [class.active]="isActive('/favorites')" style="margin-right: 10px;"> Favorites </button>
+</div>
+
+
+<div class="favorites-container" *ngIf="favoriteEvents.length > 0">
+  <h2 class="favorites-title">List of your favorite events</h2>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 5%;">#</th>
+          <th style="width: 15%;">Date</th>
+          <th style="width: 25%;">Event</th>
+          <th style="width: 20%;">Category</th>
+          <th style="width: 20%;">Venue</th>
+          <th style="width: 15%;">Favorite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of favoriteEvents; let i = index" class="favorite-hover-effect">
+          <td>{{ i + 1 }}</td>
+          <td>{{ event.date ? event.date : '' }}</td>
+          <td>{{ event.eventName ? event.eventName : '' }}</td>
+          <td>{{ event.category ? event.category : '' }}</td>
+          <td>{{ event.venue ? event.venue : '' }}</td>
+          <td><i class="far fa-trash-alt" id="trash-button" (click)="removeFavoriteEvent(i)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="noRecordFound-favorite" *ngIf="!favoriteEvents || favoriteEvents.length === 0">
+  <div class="no-favorites-message"> No favorite events to show</div>
+</div>
+
+

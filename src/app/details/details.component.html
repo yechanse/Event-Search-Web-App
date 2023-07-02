@@ -1,0 +1,244 @@
+<div class="event-details-container">
+    <div>
+        <a class="back-button" (click)="backClicked()">
+            <div class="square"></div>
+            <span class="back-text">Back</span>
+        </a>
+    </div>
+    <div class="event-name-title">
+        <h2 class = "etitle">{{ eventDetails.eventName }}
+            <button class="favorite-button" (click)="AddOrRemoveFavorites(eventDetails)" [class.active]="isFavorite">
+                <i class="far fa-heart fa-lg" [class.fas]="isFavorite"></i>
+            </button>
+        </h2>
+    </div>
+
+    <mat-tab-group mat-align-tabs="center">
+
+        <!-- Event Details -->
+        <mat-tab label="Event Details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-7 col-12 mb-3 mb-md-0 d-flex align-items-center justify-content-center">
+                        <div class="event-details">
+
+
+                            <table>
+                                <tr class = "detail-titles" *ngIf="eventDetails.date">
+                                    <td>Date</td>
+                                    </tr>
+                                <tr class= "detail-data" *ngIf="eventDetails.date" >
+                                    <td>{{ eventDetails.date }}</td>
+                                </tr>
+                                <tr class = "detail-titles" *ngIf="eventDetails.genre">
+                                    <td>Genre</td>
+                                </tr>
+                                <tr class= "detail-data" class= "detail-data" *ngIf="eventDetails.genre">
+                                    <td>{{ eventDetails.genre }}</td>
+                                </tr>
+                                <tr class = "detail-titles" *ngIf="eventDetails.venue">
+                                    <td>Venue</td>
+                                </tr>
+                                <tr class= "detail-data"  *ngIf="eventDetails.venue">
+                                    <td>{{ eventDetails.venue }}</td>
+                                </tr>
+                                <tr class = "detail-titles" *ngIf="eventDetails.priceRange">
+                                    <td>Price Range</td>
+                                </tr>
+                                <tr class= "detail-data" *ngIf="eventDetails.priceRange">
+                                    <td>{{ eventDetails.priceRange }}</td>
+                                </tr>
+                                <tr class = "detail-titles" *ngIf="eventDetails.ticketStatus && eventDetails.ticketStatus.status">
+                                    <td>Ticket Status</td>
+                                </tr>
+                                <tr class= "detail-data" style="font-size: 13px;" *ngIf="eventDetails.ticketStatus && eventDetails.ticketStatus.status">
+                                    <span class="ticket-status" [ngStyle]="{'background-color': eventDetails.ticketStatus.color}">
+                                        {{ eventDetails.ticketStatus.status }}
+                                    </span>
+                                </tr>
+                                <tr class = "detail-titles"  *ngIf="eventDetails.buyTicketUrl">
+                                    <td style="padding-top:13px;">Buy Tickets</td>
+                                </tr>
+                                <tr *ngIf="eventDetails.buyTicketUrl" style = "text-align: center;">
+                                    <td style=" padding: 3px; padding-bottom: 5px;">
+                                        <a href="{{ eventDetails.buyTicketUrl }}" target="_blank">Tickemaster</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12 d-flex align-items-center justify-content-center">
+                        <div class="seatmap-image">
+                            <img src="{{ eventDetails.seatMapUrl }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="share-icons" style="font-size: 14px;margin: 20px; text-align: center;">
+                            <span>Share on:</span>
+                            <a href="http://twitter.com/share?text=Check {{eventDetails.eventName}} on Ticketmaster. &url={{eventDetails.buyTicketUrl}}" target="_blank">
+                                <i class="fab fa-twitter fa-lg"></i>
+                            </a>
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{eventDetails.buyTicketUrl}}&amp;src=sdkpreparse">
+                                <i class="fab fa-facebook-f" id ="fb-design"></i>
+                            </a>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+
+        <!-- Artists / Teams -->
+        <mat-tab label="Artists/Teams">
+            <div *ngIf="isValidArtist" class="artist-container">
+                <ngb-carousel [attr.multiple-artists]="artistDetails.length > 1 ? true : null" [interval]="0">
+                    <ng-template ngbSlide *ngFor="let artist of artistDetails">
+                        <ng-container *ngTemplateOutlet="artistDetailsTemplate; context: {$implicit: artist}"></ng-container>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+            <div id="noRecordFound" [ngClass]="{'d-none': isValidArtist}">
+                No music related artist details to show
+            </div>
+        </mat-tab>
+        
+        <!-- Template will be inserted into the slide above -->
+        <ng-template #artistDetailsTemplate let-artist>
+            <div class="artist-details" style="text-align:center;">
+                <div class="row">
+                    <div class="col-lg-3 col-12" id="first-sec" style = "margin-left:0px; margin-right:0px;">
+                        <div class="artist-photo" style="padding: 0px;">
+                            <img [src]="artist.artistImage" [alt]="" class="img-fluid rounded-circle w-155 h-155 object-fit-cover" style="width: 155px; height: 155px;max-width: 170px; margin-top:25px;">
+                            <div class="artist-label" style="margin-top: 7px;"> {{artist.name}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12" id="second-sec">
+                        <div class="popularity">
+                            <div class="artist-label">Popularity <br></div>
+                            <div class="value-popularity">
+                                <mat-progress-spinner class="red-spinner" [value]="artist.popularity" [diameter]="60"></mat-progress-spinner>
+                                <span class="percentage">{{ artist.popularity }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12" id="third-sec">
+                        <div class="info-row" *ngIf="artist.followers !== ''">
+                            <div class="artist-label">Followers <br></div>
+                            <div class="value" style="font-size: 20px;">{{ artist.followers}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-12" id="fourth-sec">
+                        <div class="info-row" *ngIf="artist.spotifyLink !== ''">
+                            <div class="artist-label">Spotify <br> </div>
+                            <div class="value">
+                                <a [href]="artist.spotifyLink" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-spotify spotify-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Album part -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h4 id ="albumTitleid" style="text-align: left; font-size: 15px;color: #12bb91; font-weight: bold;">Album Covers {{artist.name}}</h4>
+                    </div>
+                    <div class="col-md-4 col-12" id="albumid" *ngFor="let albumCover of artist.albumCovers">
+                        <div class="album-cover" style="margin-top: 20px; width: 200px;">
+                            <img [src]="albumCover" [alt]="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Venue -->
+        <mat-tab label="Venue">
+            <div class="venue-container" style="margin:30px 20px 20px 20px;" *ngIf="isValidVenue">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-12 text-center">
+                            <div class="venue-field" *ngIf="venueDetails[0].venueName && venueDetails[0].venueName !== ''">
+                                <div class="venue-title">Name</div>
+                                <div class="venue-value">{{venueDetails[0].venueName}}</div>
+                            </div>
+                            <div class="venue-field" *ngIf="venueDetails[0].address && venueDetails[0].address !== ''">
+                                <div class="venue-title">Address</div>
+                                <div class="venue-value">{{venueDetails[0].address}}</div>
+                            </div>
+                            <div class="venue-field" *ngIf="venueDetails[0].phoneNumber && venueDetails[0].phoneNumber !== ''">
+                                <div class="venue-title">Phone Number</div>
+                                <div class="venue-value">{{venueDetails[0].phoneNumber}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12 text-center">
+                            <div class="venue-field" *ngIf="venueDetails[0].openHours && venueDetails[0].openHours !== ''">
+                                <div class="venue-title">Open Hours</div>
+                                <div class="venue-value show-more" [ngClass]="{'expanded': showMoreOpenHours}" (click)="toggleShowMore('openHours')">{{venueDetails[0].openHours}}<br> </div>
+                                <a class="atagClick" (click)="toggleShowMore('openHours')" style="margin-left: 6px;">
+                                    {{showMoreOpenHours ? 'Show Less' : 'Show More'}} </a>
+                                <i class="fas" [ngClass]="{'fa-chevron-up': showMoreOpenHours, 'fa-chevron-down': !showMoreOpenHours}"></i>
+                            </div>
+                            <div class="venue-field" *ngIf="venueDetails[0].generalRule && venueDetails[0].generalRule !== ''">
+                                <div class="venue-title">General Rule</div>
+                                <div class="venue-value show-more" [ngClass]="{'expanded': showMoreGeneralRule}" (click)="toggleShowMore('generalRule')">{{venueDetails[0].generalRule}}<br> </div>
+                                <a class="atagClick" (click)="toggleShowMore('generalRule')" style="margin-left: 6px;">
+                                    {{showMoreGeneralRule ? 'Show Less' : 'Show More'}} </a>
+                                <i class="fas" [ngClass]="{'fa-chevron-up': showMoreGeneralRule, 'fa-chevron-down': !showMoreGeneralRule}"></i>
+                            </div>
+                            <div class="venue-field" *ngIf="venueDetails[0].childRule && venueDetails[0].childRule !== ''">
+                                <div class="venue-title">Child Rule</div>
+                                <div class="venue-value show-more" [ngClass]="{'expanded': showMoreChildRule}" (click)="toggleShowMore('childRule')">{{venueDetails[0].childRule}}<br> </div>
+                                <a class="atagClick" (click)="toggleShowMore('childRule')" style="margin-left: 6px;">
+                                    {{showMoreChildRule ? 'Show Less' : 'Show More'}} </a>
+                                <i class="fas" [ngClass]="{'fa-chevron-up': showMoreChildRule, 'fa-chevron-down': !showMoreChildRule}"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-danger" style="margin-top: 40px;" (click)="showMap()">Show venue on Google map</button>
+                            <ng-template #venueMapModal let-modal>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Event Venue</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="onCloseMap()">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <google-map height="600px" width="100%" [center]="venueLatLng" [zoom]="14" class="square-map">
+                                        <map-marker [position]="venueLatLng"></map-marker>
+                                    </google-map>
+                                </div>
+                                <div class="d-flex">
+                                    <button type="button" style="margin-left: 30px;margin-bottom: 40px;" class="btn btn-dark" (click)="onCloseMap()">Close</button>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="noRecordFound" [ngClass]="{'d-none': isValidVenue}" >
+                No venue information details to show
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+

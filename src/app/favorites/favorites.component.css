@@ -1,0 +1,140 @@
+
+
+
+.btn.active {
+    border: 2px solid #fff;
+    color: #fff;
+    background-color: transparent;
+}
+  
+.btn-outline-light {
+    color: #fff;
+    border: 2px solid transparent;
+    background-color: transparent;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.favorites-combined {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+  
+.favorites-container {
+    margin-top: 20px;
+}
+  
+.favorites-title {
+    font-size: 24px;
+    color: #12bb91;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+  
+table {
+    max-width: 700px;
+    min-width: 440px; 
+    font-family: Verdana;
+    color: black;
+    text-align: center;
+    border: none;
+    margin-bottom: 13px;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+table td, table th {
+    border: none;
+}
+  
+thead th {
+    padding: 10px 0;
+    background-color: #fffffff4;
+    font-weight: bold;
+    font-size: 13px;
+}
+tbody {
+    background-color: #fffffff4;
+    font-size: 11px;
+}
+table tr {
+    border-bottom: 1px solid rgb(164, 164, 164);
+}
+
+td {
+    padding-top:5px;
+    padding-bottom:5px;
+}
+thead th:first-child {
+    border-top-left-radius: 10px;
+}
+  
+thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+table tbody tr:last-child{
+    border-bottom:none;
+}
+
+#trash-button {
+    cursor: pointer;
+    color:black;
+}
+
+#noRecordFound-favorite {
+    font-family: Verdana;
+    font-size: 15px;
+    font-weight:bold;
+    color: red;
+    text-align: center;
+    background-color: white;
+    padding: 1px;
+    margin: 40px auto;
+    width: 450px;
+    border-radius: 10px;
+}
+
+.no-favorites-message {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .favorites-title {
+        font-size: 19px;
+    }
+    table {
+        font-size: 8px;
+        border-left: none;
+        border-right: none;
+    }
+    thead th {
+        font-size: 9px;
+    }
+    tbody {
+        font-size: 9px;
+    }
+    #noRecordFound-favorite {
+        width: 300px;
+        font-size: 15px;
+    }
+}
+
+.favorite-hover-effect:hover {
+    background-color: #b0b0b0ac;
+}

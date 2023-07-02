@@ -1,0 +1,412 @@
+.event-details-container {
+    max-width: 850px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    margin-top: 25px;
+    border-radius: 20px;
+    background-color: rgb(120, 120, 120, 0.6);
+    backdrop-filter: blur(4.5px);
+    padding: 10px 20px 20px 20px;
+    color: white;
+    font-size: 14.5px;
+    font-family: 'Verdana';
+}
+.event-details-container{
+    padding:0px;
+}
+.detail-data td {
+    padding-top: 5px;
+    padding-bottom: 13px;
+}
+.event-details {
+    padding-top: 25px;
+}
+  
+.event-details table {
+    width: 100%;
+    text-align: center;
+ }
+  
+.event-details .detail-titles {
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 16px;
+    color: #12bb91;
+}
+  
+.event-details .detail-data {
+    padding-bottom: 10px;
+}
+.seatmap-image img {
+    max-width: 350px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.ticket-status {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.event-name-title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 10px 0px 10px;
+}
+.etitle{
+    font-size: 21px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.fa-twitter {
+    font-size: 24px;
+    padding: 3px;
+    color: rgb(94, 203, 246);
+    margin: 4px;
+  }
+
+.fa-facebook-f {
+    font-size: 21px;
+    color: transparent;
+    background-color: #3111ffc9;
+    border-radius: 4px; 
+    color: rgba(255, 255, 255, 0.216); 
+    padding: 6px 6px 0px 10px;
+    position: relative; 
+ }
+
+
+
+
+
+
+
+
+/* back button and favorite */
+.back-button {
+    display: inline-flex;
+    text-align: left;
+    cursor: pointer;
+    color: white;
+    margin-top: 23px;
+    margin-left: 17px;
+}
+
+.square{
+    margin: auto;
+    width: 12.5px;
+    height: 12.5px;
+    border: 2px solid white;
+    transform: rotate(45deg); 
+    border-top: 0px; 
+    border-right: 0px; 
+    margin-left: 7px;
+} 
+
+.favorite-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: white;
+    color: gray;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 8px;
+}
+  
+.favorite-button.active {
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Venue */
+.first-col,
+.second-col {
+    padding: 15px;
+}
+.venue-field {
+    padding-bottom: 10px;
+}
+.venue-title {
+    font-weight: bold;
+    padding-bottom: 5px;
+    font-size: 18px;
+    color: #12bb91;
+    font-weight: bold;
+}
+.venue-value {
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+.show-more {
+    display: block;
+    height: 42px;
+    overflow: hidden; 
+}
+.show-more.expanded {
+    height: auto;
+    overflow: visible;
+}
+.show-more::after {
+    overflow: visible;
+    display: block;
+}
+.show-more.expanded::after {
+    display: block;
+}
+.atagClick{
+    cursor: pointer;
+    color:rgb(107, 167, 191);
+}
+.fa-chevron-up, .fa-chevron-down {
+    color: #ffffff;
+}
+
+
+
+
+
+/* Artist */
+:host ::ng-deep .artist-container ngb-carousel .carousel-control-next,
+:host ::ng-deep .artist-container ngb-carousel .carousel-control-prev {
+    display: none;
+}
+
+:host ::ng-deep .artist-container ngb-carousel[multiple-artists] .carousel-control-next,
+:host ::ng-deep .artist-container ngb-carousel[multiple-artists] .carousel-control-prev {
+    display: block;
+}
+
+/* Hide carousel indicators */
+::ng-deep .carousel-indicators {
+    display: none;
+}
+
+.red-spinner::ng-deep circle{
+    stroke: red !important;
+}
+
+.artist-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    font-weight: bold;
+    color: #12bb91;
+    font-size: 15px;
+}
+
+.value {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.artist-details {
+    margin-top: 20px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+@media (max-width: 999px) {
+    .artist-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; 
+        margin: 20px;
+    }
+    #first-sec,
+    #second-sec,
+    #third-sec,
+    #fourth-sec,
+    #albumid, 
+    #albumTitleid{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+        width: 100%;
+        margin: 0 0 10px; 
+    }
+    #albumTitleid{
+        padding-left:40px;
+    }
+    #albumid .album-cover .img-fluid{
+        width:250px;
+        height:250px;
+        max-width: 300px;
+        padding-right: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+.spotify-icon {
+    color: green;
+    font-size: 40px;
+    margin-top: 12px;
+}
+
+.value-popularity{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.percentage{
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* no records */
+#noRecordFound {
+    font-family: Verdana;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+    background-color: white;
+    padding: 1px;
+    margin: 40px auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: calc(min(500px, 90vw));
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+/*  */
+/* Artist Teams */
+
+:host ::ng-deep .artist-container ngb-carousel .carousel-control-next,
+:host ::ng-deep .artist-container ngb-carousel .carousel-control-prev {
+    display: none;
+}
+
+:host ::ng-deep .artist-container ngb-carousel[multiple-artists] .carousel-control-next,
+:host ::ng-deep .artist-container ngb-carousel[multiple-artists] .carousel-control-prev {
+    display: block;
+}
+
+/* Hide carousel indicators */
+::ng-deep .carousel-indicators {
+    display: none;
+}
+
+.red-spinner::ng-deep circle{
+    stroke: red !important;
+}
+
+.artist-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    font-weight: bold;
+    color: #12bb91;
+    font-size: 16px;
+}
+.artist-label-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7px;
+    font-weight: bold;
+    color: #12bb91;
+    font-size: 15px;
+}
+
+
+.value {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.artist-details {
+    margin-top: 20px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 50px;
+}
+
+
+.spotify-icon {
+    color: green;
+    font-size: 40px;
+    margin-top: 12px;
+}
+
+.value-popularity{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.percentage{
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/*  */
+
+#noRecordFound-artist {
+    font-family: Verdana;
+    font-size: 15px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    background-color: white;
+    padding: 1px;
+    margin: 40px auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: calc(min(500px, 90vw));
+    border-radius: 10px;
+}
+  
+  

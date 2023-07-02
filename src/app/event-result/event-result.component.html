@@ -1,0 +1,43 @@
+<div class="container" [ngClass]="{'d-none': !events || events.length === 0}">
+  <div class="row">
+    <div class="col-10 text-center">
+      <table class="table">
+        <thead>
+          <tr style="background-color: #292929;">
+            <th style="width: 15%;">Date/Time</th>
+            <th style="width: 10%;">Icon</th>
+            <th style="width: 40%;">Event</th> 
+            <th style="width: 10%;">Genre</th>
+            <th style="width: 30%;">Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="events && events.length > 0">
+            <tr *ngFor="let event of events; let i = index" [ngStyle]="{'background-color': i % 2 === 0 ? '#474747' : '#292929'}">
+              <td>
+                <ng-container *ngIf="event.date !== undefined || event.date !== ''">
+                  {{ event.date }}
+                </ng-container>
+                <ng-container *ngIf="event.date !== '' && event.dateTime !== undefined && event.dateTime !== ''">
+                  <br />
+                  {{ event.dateTime }}
+                </ng-container>
+                <ng-container *ngIf="event.date === '' && event.dateTime !== undefined && event.dateTime !== ''">
+                  {{ event.dateTime }}
+                </ng-container>
+              </td>              
+              <td><img [src]="event.icon"></td>
+              <td class = "eventclick" (click)="displayDetailCard(event)">{{ event.name }}</td>
+              <td>{{ event.genre }}</td>
+              <td>{{ event.venue }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="noRecordFound" [ngClass]="{'d-none': events && events.length > 0}">
+  No results available
+</div>
