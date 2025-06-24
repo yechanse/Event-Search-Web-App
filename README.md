@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
 ## Static Page
-As starting scratch, a static web page was created using Python, Flask, HTML, JavaScript, and Ajax. You can access it, [here](https://hw6geocoding-377201.wl.r.appspot.com/)
+As starting scratch, a static web page was created using Python, Flask, HTML, JavaScript, and Ajax.
 
 ## [Web Application](https://cs571hw8-381320.wn.r.appspot.com/search)
 The web application is developed using Angular, TypeScript, Bootstrap, HTML, Ajax, RWD (Responsive Web Design), and Node.js. It provides an interactive interface for event searching, powered by the Ticketmaster service. You can try it, [here](https://cs571hw8-381320.wn.r.appspot.com/search).
